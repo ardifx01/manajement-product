@@ -31,8 +31,10 @@ Manajement Products
 
 ## Setup
 
-Salin file `env` menjadi `.env` dan sesuaikan untuk aplikasi Anda, khususnya `baseURL`
+1. Salin file `env` menjadi `.env` dan sesuaikan untuk aplikasi Anda, khususnya `baseURL`
 dan pengaturan database yang sudah di buat.
+2. Jalankan migration `php spark migrate`
+3. Akan terdapat tabel pendukung menjalankan sistem.
 
 ## Perubahan Penting dengan index.php
 
