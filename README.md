@@ -32,7 +32,7 @@ Manajement Products
 ## Setup
 
 Salin file `env` menjadi `.env` dan sesuaikan untuk aplikasi Anda, khususnya `baseURL`
-dan pengaturan database apa pun.
+dan pengaturan database yang sudah di buat.
 
 ## Perubahan Penting dengan index.php
 
