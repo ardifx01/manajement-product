@@ -16,16 +16,17 @@ Berikut adalah beberapa screenshot dari aplikasi yang sedang berjalan:
 ![login](https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/login.png)
 Tampilan halaman login aplikasi
 
-https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/dashboard.png
+![dashboard](https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/dashboard.png)
 Dashboard admin setelah login berhasil
 
-https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/1.png
+![manajement](https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/1.png)
 
-https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/2.png
+![manajement2](https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/2.png)
 
-https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/3.png
+![manajement3](https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/3.png)
 
-https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/4.png
+![manajement4](https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/4.png)
+Manajement Products
 
 
 ## Setup
