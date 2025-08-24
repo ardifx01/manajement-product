@@ -13,19 +13,19 @@
 
 Berikut adalah beberapa screenshot dari aplikasi yang sedang berjalan:
 
-https:///public/screenshots/login.png
+https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/login.png
 Tampilan halaman login aplikasi
 
-https:///public/screenshots/dashboard.png
+https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/dashboard.png
 Dashboard admin setelah login berhasil
 
-https:///public/screenshots/1.png
+https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/1.png
 
-https:///public/screenshots/2.png
+https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/2.png
 
-https:///public/screenshots/3.png
+https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/3.png
 
-https:///public/screenshots/4.png
+https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/4.png
 
 
 ## Setup
