@@ -13,7 +13,7 @@
 
 Berikut adalah beberapa screenshot dari aplikasi yang sedang berjalan:
 
-https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/login.png
+![login](https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/login.png)
 Tampilan halaman login aplikasi
 
 https://github.com/jakfarshodiq230/manajement-product/blob/main/public/screenshots/dashboard.png
