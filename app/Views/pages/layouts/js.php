@@ -12,9 +12,6 @@
 <script src="<?= base_url('theme/plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js') ?>"></script>
 <script src="<?= base_url('theme/plugins/d3/dist/d3.min.js') ?>"></script>
 <script src="<?= base_url('theme/plugins/c3/c3.min.js') ?>"></script>
-<script src="<?= base_url('theme/js/tables.js') ?>"></script>
-<script src="<?= base_url('theme/js/widgets.js') ?>"></script>
-<script src="<?= base_url('theme/js/charts.js') ?>"></script>
 <script src="<?= base_url('theme/dist/js/theme.min.js') ?>"></script>
 
 <!-- tables -->

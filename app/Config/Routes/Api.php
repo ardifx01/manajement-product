@@ -16,11 +16,5 @@ $routes->group('api/v1', ['namespace' => 'App\Controllers\Api'], function($route
     // costum pdf
     $routes->get('incoming-items/pdf', 'IncomingItemsController::generatePdf');
     $routes->get('outgoing-items/pdf', 'OutgoingItemsController::generatePdf');
-
-    $routes->group('dashboard', function($routes) {
-        $routes->get('summary', 'Api\DashboardController::summary');
-        $routes->get('products', 'Api\DashboardController::products');
-        $routes->get('incoming-items', 'Api\DashboardController::incomingItems');
-        $routes->get('outgoing-items', 'Api\DashboardController::outgoingItems');
-    });
+    $routes->get('dashboard/summary','DashboardController::summary');
 });

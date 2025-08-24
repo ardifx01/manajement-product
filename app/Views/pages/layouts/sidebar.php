@@ -3,9 +3,9 @@
         <div class="sidebar-header">
             <a class="header-brand" href="index.html">
                 <div class="logo-img">
-                   <img src="<?= base_url('theme/src/img/brand-white.svg') ?>" class="header-brand-img" alt="lavalite"> 
+                   <img src="<?= base_url('theme/src/img/logo.svg') ?>" class="header-brand-img" alt="lavalite"> 
                 </div>
-                <span class="text">ThemeKit</span>
+                <span class="text">MJN-PRC</span>
             </a>
             <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
             <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
@@ -23,9 +23,9 @@
                         <a href="<?= base_url('data-categories') ?>"><i class="ik ik-clipboard"></i><span>Categories</span></a>
                     </div>
                     <div class="nav-item">
-                        <a href="<?= base_url('data-product') ?>"><i class="ik ik-folder"></i><span>Products</span></a>
+                        <a href="<?= base_url('data-product') ?>"><i class="ik ik-package"></i><span>Products</span></a>
                     </div>
-                    <div class="nav-lavel">Trancaktion</div>
+                    <div class="nav-lavel">Transaksi</div>
                     <div class="nav-item">
                         <a href="<?= base_url('data-incomingitems') ?>"><i class="ik ik-upload"></i><span>Incoming Product</span></a>
                     </div>

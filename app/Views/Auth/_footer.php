@@ -1,12 +1,21 @@
 </main><!-- /.container -->
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>window.jQuery || document.write('<script src="<?= base_url('theme/src/js/vendor/jquery-3.3.1.min.js') ?>"><\/script>')</script>
+        <script src="<?= base_url('theme/plugins/popper.js/dist/umd/popper.min.js') ?>"></script>
+        <script src="<?= base_url('theme/plugins/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+        <script src="<?= base_url('theme/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js') ?>"></script>
+        <script src="<?= base_url('theme/plugins/screenfull/dist/screenfull.js') ?>"></script>
+        <script src="<?= base_url('theme/dist/js/theme.js') ?>"></script>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
 </body>
 </html>

@@ -68,4 +68,12 @@ class OutgoingItems extends Model
     protected $afterDelete    = [];
 
     // Custom validation methods jika diperlukan
+    // Add this method
+    public function getMonthlyOutgoing()
+    {
+        return $this->select("DATE_FORMAT(date, '%Y-%m') as month, SUM(quantity) as total")
+                    ->groupBy("DATE_FORMAT(date, '%Y-%m')")
+                    ->orderBy('month', 'ASC')
+                    ->findAll();
+    }
 }

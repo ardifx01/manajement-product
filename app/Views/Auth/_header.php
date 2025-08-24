@@ -1,26 +1,29 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Myth:Auth</title>
+    <title>Login</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="icon" href="<?= base_url('theme/favicon.ico') ?>" type="image/x-icon" />
 
-    <style>
-        body {
-            padding-top: 5rem;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="<?= base_url('theme/plugins/bootstrap/dist/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('theme/plugins/fontawesome-free/css/all.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('theme/plugins/ionicons/dist/css/ionicons.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('theme/plugins/icon-kit/dist/css/iconkit.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('theme/plugins/perfect-scrollbar/css/perfect-scrollbar.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('theme/dist/css/theme.min.css') ?>">
+    <script src="<?= base_url('theme/src/js/vendor/modernizr-2.8.3.min.js') ?>"></script>
 </head>
 
 <body>
 
-<?= view('App\Views\Auth\_navbar') ?>
+    <?= view('App\Views\Auth\_navbar') ?>
 
-<main role="main" class="container">
+    <main role="main" class="container">

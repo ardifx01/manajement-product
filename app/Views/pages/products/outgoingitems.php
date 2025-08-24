@@ -6,12 +6,12 @@
         <div class="card">
 
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h3>List Data Outgoing Items</h3>
+                <h3>List Data Outgoing Products</h3>
                 <div>
                     <button class="btn btn-primary btn-sm mr-2" id="btn-pdf">
                         <i class="fa fa-file-pdf"></i> Download PDF
                     </button>
-                    <button class="btn btn-success btn-sm" id="btn-add"><i class="fa fa-plus"></i> Tambah Incoming Item</button>
+                    <button class="btn btn-success btn-sm" id="btn-add"><i class="fa fa-plus"></i> Tambah Incoming Products</button>
                 </div>
             </div>
             <div class="card-body">
@@ -187,7 +187,7 @@
         table = $('#outgoing-items-table').DataTable({
             scrollY: '50vh',
             scrollCollapse: true,
-            paging: true,
+            paging: false,
             processing: true,
             serverSide: false,
             ajax: {
