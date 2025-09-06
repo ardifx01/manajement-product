@@ -127,7 +127,7 @@
     // Use a self-invoking function to avoid global variables
     (function($) {
         "use strict";
-        
+
         var table;
         var products = [];
 
@@ -430,10 +430,28 @@
                 var productId = $('#filter_product').val();
                 var startDate = $('#filter_start_date').val();
                 var endDate = $('#filter_end_date').val();
-                var url = '/api/v1/incoming-items/pdf?';
-                if (productId) url += 'product_id=' + productId + '&';
-                if (startDate) url += 'start_date=' + startDate + '&';
-                if (endDate) url += 'end_date=' + endDate;
+
+                // Gunakan route baru
+                var url = '/reports/incoming-items/pdf?';
+                var params = [];
+
+                if (productId && productId !== 'all') {
+                    params.push('product_id=' + encodeURIComponent(productId));
+                }
+
+                if (startDate) {
+                    params.push('start_date=' + encodeURIComponent(startDate));
+                }
+
+                if (endDate) {
+                    params.push('end_date=' + encodeURIComponent(endDate));
+                }
+
+                if (params.length > 0) {
+                    url += params.join('&');
+                } else {
+                    url = '/reports/incoming-items/pdf';
+                }
                 window.open(url, '_blank');
             });
         });

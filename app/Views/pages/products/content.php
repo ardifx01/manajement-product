@@ -6,7 +6,12 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h3>List data products</h3>
-                <button class="btn btn-success btn-sm" id="btn-add"><i class="fa fa-plus"></i> Tambah Product</button>
+                <div>
+                    <button class="btn btn-primary btn-sm mr-2" id="btn-pdf">
+                        <i class="fa fa-file-pdf"></i> Download PDF
+                    </button>
+                    <button class="btn btn-success btn-sm" id="btn-add"><i class="fa fa-plus"></i> Tambah Product</button>
+                </div> 
             </div>
             <div class="card-body">
                 <div class="dt-responsive">
@@ -131,6 +136,7 @@
             scrollY: '50vh',
             scrollCollapse: true,
             paging: false,
+            processing: true,
             ajax: {
                 url: '/api/v1/products',
                 dataSrc: 'data'
@@ -308,6 +314,12 @@
                     });
                 }
             });
+        });
+
+        // PDF Export
+        $('#btn-pdf').on('click', function() {
+            var url = '/reports/stock/pdf'; // New route for stock report
+            window.open(url, '_blank');
         });
     });
 </script>

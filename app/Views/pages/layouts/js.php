@@ -16,6 +16,7 @@
 
 <!-- tables -->
 <script src="<?= base_url('theme/js/datatables.js') ?>"></script>
+
 </body>
 
 </html>

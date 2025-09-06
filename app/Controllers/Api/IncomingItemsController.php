@@ -20,6 +20,7 @@ class IncomingItemsController extends BaseController
     {
         $this->model = new IncomingItems();
         $this->productModel = new Products(); // Inisialisasi model produk
+        helper(['url', 'form']);
     }
 
     /**
@@ -274,57 +275,94 @@ class IncomingItemsController extends BaseController
         }
     }
 
-    // Tambahkan metode lain jika diperlukan
-    public function generatePdf()
+    public function pdf()
     {
-        $product_id = $this->request->getGet('product_id');
-        $start_date = $this->request->getGet('start_date');
-        $end_date = $this->request->getGet('end_date');
+        try {
+            log_message('debug', 'PDF method accessed');
 
-        $builder = $this->model
-            ->select('incoming_items.*, products.name as product_name, products.code as product_code')
+            // Ambil parameter filter
+            $productId = $this->request->getGet('product_id');
+            $startDate = $this->request->getGet('start_date');
+            $endDate = $this->request->getGet('end_date');
+
+            // Build query dengan join ke products
+            $builder = $this->incomingItemsModel->select('
+                incoming_items.*, 
+                products.code as product_code,
+                products.name as product_name,
+                products.unit as product_unit
+            ')
             ->join('products', 'products.id = incoming_items.product_id');
 
-        if (!empty($product_id)) {
-            $builder->where('incoming_items.product_id', $product_id);
+            // Filter by product_id
+            if (!empty($productId) && $productId != 'all') {
+                $builder->where('incoming_items.product_id', $productId);
+            }
+
+            // Filter by date range
+            if (!empty($startDate)) {
+                $builder->where('DATE(incoming_items.date) >=', $startDate);
+            }
+            if (!empty($endDate)) {
+                $builder->where('DATE(incoming_items.date) <=', $endDate);
+            }
+
+            // Get data
+            $items = $builder->orderBy('incoming_items.date', 'DESC')
+                            ->orderBy('incoming_items.created_at', 'DESC')
+                            ->findAll();
+
+            // Hitung total quantity
+            $totalQuantity = 0;
+            foreach ($items as $item) {
+                $totalQuantity += (int)$item['quantity'];
+            }
+
+            // Data untuk view
+            $data = [
+                'items' => $items,
+                'total_quantity' => $totalQuantity,
+                'filters' => [
+                    'product_id' => $productId,
+                    'start_date' => $startDate,
+                    'end_date' => $endDate
+                ],
+                'report_title' => 'LAPORAN BARANG MASUK',
+                'generated_at' => date('d/m/Y H:i:s')
+            ];
+
+            // Load HTML content
+            $html = view('pdf/incoming_items_report', $data);
+
+            // Setup DomPDF
+            $options = new Options();
+            $options->set('isHtml5ParserEnabled', true);
+            $options->set('isRemoteEnabled', true);
+            $options->set('defaultFont', 'Arial');
+            $options->set('isPhpEnabled', true);
+
+            $dompdf = new Dompdf($options);
+            $dompdf->loadHtml($html);
+            
+            // Setup paper size and orientation
+            $dompdf->setPaper('A4', 'landscape');
+            
+            // Render PDF
+            $dompdf->render();
+
+            // Generate filename
+            $filename = 'laporan-barang-masuk-' . date('Y-m-d-H-i-s') . '.pdf';
+
+            // Output PDF to browser
+            $dompdf->stream($filename, [
+                'Attachment' => false
+            ]);
+
+            exit; // Penting: exit setelah stream
+
+        } catch (\Exception $e) {
+            log_message('error', 'PDF Generation Error: ' . $e->getMessage());
+            return $this->failServerError('Gagal generate PDF: ' . $e->getMessage());
         }
-
-        if (!empty($start_date)) {
-            $builder->where('DATE(incoming_items.date) >=', $start_date);
-        }
-
-        if (!empty($end_date)) {
-            $builder->where('DATE(incoming_items.date) <=', $end_date);
-        }
-
-        $data = [
-            'incoming_items' => $builder->findAll(),
-            'filter_product' => !empty($product_id) ? $this->productModel->find($product_id) : null,
-            'filter_start_date' => $start_date,
-            'filter_end_date' => $end_date,
-            'title' => 'Laporan Incoming Items'
-        ];
-
-        // Load the dompdf library
-        $options = new Options();
-        $options->set('isRemoteEnabled', true);
-        $options->set('isHtml5ParserEnabled', true);
-        $options->set('defaultFont', 'Arial');
-
-        $dompdf = new Dompdf($options);
-
-        // Load HTML content
-        $html = view('pages/products/pdf_cetak_incomingitems', $data);
-        $dompdf->loadHtml($html);
-
-        // Set paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
-
-        // Render PDF (generate)
-        $dompdf->render();
-
-        // Output the generated PDF to browser
-        $filename = date('y-m-d-H-i-s'). '-qadr-labs-report';
-        $dompdf->stream($filename);
     }
 }

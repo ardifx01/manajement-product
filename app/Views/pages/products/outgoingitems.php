@@ -410,6 +410,35 @@
                 }
             });
         });
+
+        $('#btn-pdf').on('click', function() {
+            var productId = $('#filter_product').val();
+            var startDate = $('#filter_start_date').val();
+            var endDate = $('#filter_end_date').val();
+
+            // Gunakan route baru
+            var url = '/reports/outgoing-items/pdf?';
+            var params = [];
+
+            if (productId && productId !== 'all') {
+                params.push('product_id=' + encodeURIComponent(productId));
+            }
+
+            if (startDate) {
+                params.push('start_date=' + encodeURIComponent(startDate));
+            }
+
+            if (endDate) {
+                params.push('end_date=' + encodeURIComponent(endDate));
+            }
+
+            if (params.length > 0) {
+                url += params.join('&');
+            } else {
+                url = '/reports/outgoing-items/pdf';
+            }
+            window.open(url, '_blank');
+        });
     });
 </script>
 <?= $this->endSection() ?>
