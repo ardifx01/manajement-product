@@ -13,8 +13,10 @@ $routes->group('api/v1', ['namespace' => 'App\Controllers\Api'], function ($rout
     $routes->resource('incoming-items', ['controller' => 'IncomingItemsController']);
     $routes->resource('outgoing-items', ['controller' => 'OutgoingItemsController']);
 
-    // costum pdf
+    // dashbort
     $routes->get('dashboard/summary', 'DashboardController::summary');
+    $routes->get('dashboard/analytics', 'DashboardController::analytics');
+    $routes->get('dashboard/stock-overview', 'DashboardController::stockOverview');
 });
 
 $routes->get('reports/incoming-items/pdf', 'ReportController::incomingItemsPdf');

@@ -68,12 +68,85 @@ class IncomingItems extends Model
     protected $afterDelete    = [];
 
     // Custom validation methods jika diperlukan
-    // Add this method
-    public function getMonthlyIncoming()
+    // Method untuk data harian
+    public function getDailyData($limit = 30)
     {
-        return $this->select("DATE_FORMAT(date, '%Y-%m') as month, SUM(quantity) as total")
-                    ->groupBy("DATE_FORMAT(date, '%Y-%m')")
-                    ->orderBy('month', 'ASC')
-                    ->findAll();
+        $startDate = date('Y-m-d', strtotime("-{$limit} days"));
+
+        return $this->db->query("
+            SELECT DATE(date) as day, SUM(quantity) as total
+            FROM incoming_items 
+            WHERE date >= ?
+            GROUP BY DATE(date)
+            ORDER BY day ASC
+        ", [$startDate])->getResultArray();
+    }
+
+    // Method untuk data bulanan
+    public function getMonthlyData($limit = 12)
+    {
+        return $this->db->query("
+            SELECT 
+                YEAR(date) as year, 
+                MONTH(date) as month, 
+                CONCAT(YEAR(date), '-', LPAD(MONTH(date), 2, '0')) as period, 
+                SUM(quantity) as total
+            FROM incoming_items 
+            GROUP BY YEAR(date), MONTH(date)
+            ORDER BY year DESC, month DESC
+            LIMIT ?
+        ", [$limit])->getResultArray();
+    }
+
+    // Method untuk data tahunan
+    public function getYearlyData($limit = 5)
+    {
+        return $this->db->query("
+            SELECT YEAR(date) as year, SUM(quantity) as total
+            FROM incoming_items 
+            GROUP BY YEAR(date)
+            ORDER BY year DESC
+            LIMIT ?
+        ", [$limit])->getResultArray();
+    }
+
+    // Method untuk trend analysis
+    public function getMonthlyTrend()
+    {
+        $currentMonth = date('Y-m');
+        $previousMonth = date('Y-m', strtotime('-1 month'));
+
+        $current = $this->db->query("
+            SELECT SUM(quantity) as total
+            FROM incoming_items 
+            WHERE date LIKE ?
+        ", ["{$currentMonth}%"])->getRowArray();
+
+        $previous = $this->db->query("
+            SELECT SUM(quantity) as total
+            FROM incoming_items 
+            WHERE date LIKE ?
+        ", ["{$previousMonth}%"])->getRowArray();
+
+        return [
+            'current' => (int)($current['total'] ?? 0),
+            'previous' => (int)($previous['total'] ?? 0)
+        ];
+    }
+
+    // Total incoming
+    public function getTotalIncoming()
+    {
+        return $this->selectSum('quantity')->get()->getRow()->quantity ?? 0;
+    }
+
+    public function getTopProducts($limit = 5)
+    {
+        return $this->select('product_id, products.name, SUM(quantity) as total, code')
+            ->join('products', 'products.id = incoming_items.product_id')
+            ->groupBy('product_id')
+            ->orderBy('total', 'DESC')
+            ->limit($limit)
+            ->findAll();
     }
 }
